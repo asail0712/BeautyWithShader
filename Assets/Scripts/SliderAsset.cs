@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Granden.Common;
+using Granden.Common.Click;
 
 
 public class SliderAsset : MonoBehaviour
@@ -20,7 +22,11 @@ public class SliderAsset : MonoBehaviour
             }
         }
 
-        BackToDefaultBtn.onClick.AddListener(BackToDefault);
+        new ButtonToCommandAdapter(
+                new SingleClickFilter(
+                    BackToDefaultBtn,
+                    GlobalState.IsClicked),
+                new Command2ActionAdapter(BackToDefault));
     }
 
     private void OnDestroy()

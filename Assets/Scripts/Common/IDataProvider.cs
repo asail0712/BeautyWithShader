@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Granden
+namespace Granden.Common
 {
     public interface IDataProvider<T>
     {

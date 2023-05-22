@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Granden
+namespace Granden.Common
 {
     public class LogCommand : ICommand
     {

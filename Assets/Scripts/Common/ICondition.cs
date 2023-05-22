@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Granden
+namespace Granden.Common
 {
     public interface ICondition
     {

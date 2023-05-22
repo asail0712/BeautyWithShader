@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Granden
+namespace Granden.Common
 {
     public class AnimationEventTrigger : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace Granden
+﻿namespace Granden.Common.Value
 {
     public class StateValue<T> : IStateValue<T>
     {

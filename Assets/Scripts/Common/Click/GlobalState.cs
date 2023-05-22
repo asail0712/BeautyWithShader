@@ -1,4 +1,6 @@
-﻿namespace Granden
+﻿using Granden.Common.Value;
+
+namespace Granden.Common.Click
 {
     public static class GlobalState
     {

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Granden.Common.Value;
 
-namespace Granden
+namespace Granden.Common.Click
 {
     public class SingleClickFilterStateResetter : MonoBehaviour
     {

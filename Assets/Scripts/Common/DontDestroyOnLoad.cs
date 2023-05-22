@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Granden
+namespace Granden.Common
 {
     public class DontDestroyOnLoad : MonoBehaviour
     {

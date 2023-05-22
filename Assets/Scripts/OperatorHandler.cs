@@ -29,7 +29,6 @@ namespace Granden.gwh
         private SliderAsset _SliderAsset;
         private Func<WebCamTexture> _GetWebCamTexFunc;
 
-
         public OperatorHandler()
             : base()
         {
@@ -50,14 +49,17 @@ namespace Granden.gwh
                 return false;
             }
 
-            _BeautyEffect       = BeautyEffect;
-            _CamImg             = CamImg;
-            _ToggleSwitch       = ToggleSwitch;
-            _SliderAsset        = Slider;
-            _GetWebCamTexFunc   = GetWebCamTexFunc;
+            _BeautyEffect           = BeautyEffect;
+            _CamImg                 = CamImg;
+            _ToggleSwitch           = ToggleSwitch;
+            _SliderAsset            = Slider;
+            _GetWebCamTexFunc       = GetWebCamTexFunc;
 
-            _BeautyEffect.Initial(_GetWebCamTexFunc().width, _GetWebCamTexFunc().height);
+            int width   = _GetWebCamTexFunc().width;
+            int height  = _GetWebCamTexFunc().height;
 
+            _BeautyEffect.Initial(width, height);
+            
             return true;
         }
 
@@ -65,8 +67,7 @@ namespace Granden.gwh
         {
             AdjustParam();
 
-
-            if(_ToggleSwitch.isOn)
+            if (_ToggleSwitch.isOn)
             {
                 _CamImg.texture = _BeautyEffect.ExecuteBeauty(_GetWebCamTexFunc());
             }
@@ -75,6 +76,7 @@ namespace Granden.gwh
                 _CamImg.texture = _GetWebCamTexFunc();
             }            
         }
+
         private void AdjustParam()
         {
             for(int i = 0;i < _SliderAsset.ParamList.Count; ++i)

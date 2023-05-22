@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Granden
+namespace Granden.Common
 {
     public class Command2ActionAdapter : ICommand
     {

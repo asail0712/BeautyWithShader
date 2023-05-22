@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Granden.gwh
+namespace Granden.Common
 {
     public static class MonoBehaviourHelper
     {

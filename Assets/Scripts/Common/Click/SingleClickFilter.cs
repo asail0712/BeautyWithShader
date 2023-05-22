@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine.UI;
+using Granden.Common.Value;
 
-namespace Granden
+namespace Granden.Common.Click
 {
     public class SingleClickFilter : IButton
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Granden
+namespace Granden.Common.Value
 {
     public class StateValueLazyAdapter<T> : Lazy<IStateValue<T>>, IStateValue<T>
     {

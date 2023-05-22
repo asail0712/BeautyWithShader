@@ -1,4 +1,4 @@
-﻿namespace Granden
+﻿namespace Granden.Common.Value
 {
     public interface IStateValue<T>
     {

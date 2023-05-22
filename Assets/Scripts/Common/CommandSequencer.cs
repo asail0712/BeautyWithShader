@@ -1,4 +1,4 @@
-﻿namespace Granden
+﻿namespace Granden.Common
 {
     public class CommandSequencer : ICommand
     {

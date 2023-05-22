@@ -10,49 +10,52 @@ namespace Granden.gwh
         public Material skinCheckMat;
         public Material beautyMat;
 
-        private Texture _OriTex;
-        private Texture _Tex;
-        private RenderTexture destRT;
-        private RenderTexture srcRT;
+        private Texture _oriTex;
+        private Texture _tmpTex;
+
+        private RenderTexture _destRT;
+        private RenderTexture _srcRT;
 
         public bool Initial(int Width, int Height)
         {
-            destRT  = new RenderTexture(Width, Height, 16, RenderTextureFormat.ARGB32);
-            destRT.Create();
+            _destRT     = new RenderTexture(Width, Height, 16, RenderTextureFormat.ARGB32);
+            _destRT.Create();
 
-            srcRT   = new RenderTexture(Width, Height, 16, RenderTextureFormat.ARGB32);
-            srcRT.Create();
+            _srcRT      = new RenderTexture(Width, Height, 16, RenderTextureFormat.ARGB32);
+            _srcRT.Create();
 
-            _Tex    = new Texture2D(Width, Height);
+            _tmpTex = new Texture2D(Width, Height);
 
             return true;
         }
 
-        public Texture ExecuteBeauty(Texture OriTex)
+        public RenderTexture ExecuteBeauty(Texture oriTex)
         {
-            Graphics.Blit(OriTex, srcRT);
-            ExecuteBeauty_Internal(srcRT, destRT);
+            Graphics.Blit(oriTex, _srcRT);
+            ExecuteBeauty_Internal(_srcRT, _destRT);
 
-            Graphics.ConvertTexture(destRT, _Tex);
+            // 不再需要轉RenderTexture
+            //Graphics.ConvertTexture(destRT, _Tex);
 
-            if (destRT != null)
-            { 
-                destRT.Release();
-            }
-            if (srcRT != null)
-            { 
-                srcRT.Release();
-            }
-
-            return _Tex;
+            return _destRT;
         }
 
         public void Dispose()
         {
-            if (_Tex != null)
+            if (_tmpTex != null)
             { 
-                Destroy(_Tex);
+                Destroy(_tmpTex);
             }
+            
+            if (_destRT != null)
+            {
+                _destRT.Release();
+            }
+            if (_srcRT != null)
+            {
+                _srcRT.Release();
+            }
+
             DestroyImmediate(gameObject);
         }
 
