@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +29,7 @@ namespace Granden.gwh
         {
             if (CamImg == null || Dropdown == null)
             {
-                Debug.LogError("WebCamHandler ��l�ƥ���");
+                Debug.LogError("WebCamHandler 初始化失敗");
                 return false;
             }
 
@@ -87,7 +87,7 @@ namespace Granden.gwh
 
             _WebcamTexture.Play();
 
-            float angle = AdjustRatation(_CamImg.transform, _WebcamTexture);
+            float angle = AdjustRatation(_CamImg.transform, _WebcamTexture, idx == 1);
             FitImageSizeToCamSize(
                 (Mathf.Abs(angle) == 90) ? AspectRatioFitter.AspectMode.HeightControlsWidth : AspectRatioFitter.AspectMode.WidthControlsHeight,
                 _WebcamTexture);
@@ -102,10 +102,24 @@ namespace Granden.gwh
             Debug.Log($"camTexture:{camTexture.width} {camTexture.height}");
         }
 
-        private float AdjustRatation(Transform obj, WebCamTexture camTexture)
+        private float AdjustRatation(Transform obj, WebCamTexture camTexture, bool bNeedToMirror)
         {
             float angle     = camTexture.videoRotationAngle;
-            obj.rotation    = _ImgBaseRotation * Quaternion.AngleAxis(angle, Vector3.back);
+
+            // 是否要做鏡射
+            if(bNeedToMirror)
+            {
+                _CamImg.material.SetFloat("_MirrorX", 1);
+
+                obj.rotation = _ImgBaseRotation * Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+            else
+            {
+                _CamImg.material.SetFloat("_MirrorX", 0);
+
+                obj.rotation = _ImgBaseRotation * Quaternion.AngleAxis(angle, Vector3.back); 
+            }
+
             Debug.Log($"camTexture.videoRotationAngle:{angle}");
 
             return angle;
