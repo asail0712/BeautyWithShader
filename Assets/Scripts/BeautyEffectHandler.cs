@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Granden.gwh
+namespace Granden.BeautyWithShader
 {
     public class BeautyEffectHandler : MonoBehaviour, IDisposable
     {

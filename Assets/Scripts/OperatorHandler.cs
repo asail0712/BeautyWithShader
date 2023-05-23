@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using Granden.Core;
 
-namespace Granden.gwh
+namespace Granden.BeautyWithShader
 {
     public enum InputParamType
     {

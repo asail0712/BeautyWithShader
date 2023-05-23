@@ -6,8 +6,8 @@ using TMPro;
 
 using Granden.Core;
 
-    namespace Granden.gwh
-{ 
+namespace Granden.BeautyWithShader
+{
     public class BeautyInstaller : MonoBehaviour
     {
         public TMP_Dropdown _Dropdown;
@@ -17,7 +17,7 @@ using Granden.Core;
         public SliderAsset _SliderAsset;
 
         private OperatorHandler _OperatorHandler;
-        private WebCamHandler _WebCamHandler;
+        private IWebCamHandler _WebCamHandler;
 
         void Awake()
         {
@@ -46,7 +46,7 @@ using Granden.Core;
         *********************************************/
         private void InitalWebCam()
         {
-            _WebCamHandler = new WebCamHandler();
+            _WebCamHandler = new WebCamWithMirrorHandler();
             _WebCamHandler.Initial(_CamImg, _Dropdown);
         }
     }

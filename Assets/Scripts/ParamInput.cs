@@ -4,52 +4,53 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-using Granden.gwh;
 using Granden;
 
-public class ParamInput : MonoBehaviour
+namespace Granden.BeautyWithShader
 {
-    // Start is called before the first frame update
-    public Slider _Slider;
-    public TMP_InputField _InputText;
-
-    void Awake()
+    public class ParamInput : MonoBehaviour
     {
-        if(_InputText == null || _Slider == null)
+        // Start is called before the first frame update
+        public Slider _Slider;
+        public TMP_InputField _InputText;
+
+        void Awake()
         {
-            Debug.LogError($"{gameObject.name} 初始化失敗");
+            if (_InputText == null || _Slider == null)
+            {
+                Debug.LogError($"{gameObject.name} 初始化失敗");
+            }
+
+            _InputText.onValueChanged.AddListener(OnInputFieldChange);
+            _Slider.onValueChanged.AddListener(OnSliderChange);
+
+            _InputText.text = _Slider.value.ToString();
         }
 
-        _InputText.onValueChanged.AddListener(OnInputFieldChange);
-        _Slider.onValueChanged.AddListener(OnSliderChange);
-
-        _InputText.text = _Slider.value.ToString();
-    }
-
-    private void OnInputFieldChange(string InputStr)
-    {
-        _Slider.value = float.Parse(InputStr);
-    }
-    private void OnSliderChange(float InputValue)
-    {
-        _InputText.text = InputValue.ToString();
-    }
-
-    public float GetParam(bool bIsVert = false)
-    {
-        if(bIsVert)
+        private void OnInputFieldChange(string InputStr)
         {
-            return _Slider.maxValue - _Slider.value + _Slider.minValue;
+            _Slider.value = float.Parse(InputStr);
         }
-        else
+        private void OnSliderChange(float InputValue)
         {
-            return _Slider.value;
-        }        
-    }
-    public void SetParam(float Value)
-    {
-        _Slider.value   = Value;
-        _InputText.text = Value.ToString();
-    }
+            _InputText.text = InputValue.ToString();
+        }
 
+        public float GetParam(bool bIsVert = false)
+        {
+            if (bIsVert)
+            {
+                return _Slider.maxValue - _Slider.value + _Slider.minValue;
+            }
+            else
+            {
+                return _Slider.value;
+            }
+        }
+        public void SetParam(float Value)
+        {
+            _Slider.value = Value;
+            _InputText.text = Value.ToString();
+        }
+    }
 }
